@@ -25,6 +25,7 @@ import { myAPIkey } from "../APIkey.js";
 
     // make the card functions this one being the card itself
     function buildWeathercard(WeatherObj){
+
         console.log(WeatherObj)
         let display = document.getElementById('weatherDisplay');
         let card = document.createElement('div')
@@ -36,24 +37,29 @@ import { myAPIkey } from "../APIkey.js";
         Order.className = "list-group list-group-flush";
         card.append(Order)
 
+        let VeryFirstLine = document.createElement('li')
+        VeryFirstLine.className = "list-group-item"
+        VeryFirstLine.innerHTML = (`${WeatherObj.name}`)
+        Order.append(VeryFirstLine)
+
         let FirstLine = document.createElement('li')
         FirstLine.className = "list-group-item"
-        FirstLine.innerHTML = (`Feels like: ${WeatherObj.main.temp_max}`)
+        FirstLine.innerHTML = (`Max temp: ${Math.round((WeatherObj.main.temp_max-273.15)*1.8)+32+'℉'}`)
         Order.append(FirstLine)
 
         let SecondLine = document.createElement('li')
         SecondLine.className = "list-group-item"
-        SecondLine.innerHTML = (`Min Temp: ${WeatherObj.main.temp_min}`)
+        SecondLine.innerHTML = (`Min Temp: ${Math.round((WeatherObj.main.temp_min-273.15)*1.8)+32+'℉'}`)
         Order.append(SecondLine)
 
         let ThirdLine = document.createElement('li')
         ThirdLine.className = "list-group-item"
-        ThirdLine.innerHTML = (`Feels like: ${WeatherObj.main.feels_like}`)
+        ThirdLine.innerHTML = (`Feels like: ${Math.round((WeatherObj.main.feels_like-273.15)*1.8)+32+'℉'}`)
         Order.append(ThirdLine)
         
         let FourthLine = document.createElement('li')
         FourthLine.className = "list-group-item"
-        FourthLine.innerHTML = (`Current: ${WeatherObj.main.temp}`)
+        FourthLine.innerHTML = (`Current: ${Math.round((WeatherObj.main.temp-273.15)*1.8)+32+'℉'}`)
         Order.append(FourthLine)
 
     }
